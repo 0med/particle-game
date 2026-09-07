@@ -1,5 +1,7 @@
 --A visual particle game made with pygame--
+
 --CONTROLS--
+
 P - Pause
 
 R - Reverse -> makes particles run away from the mouse
