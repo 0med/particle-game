@@ -191,7 +191,6 @@ class Ant:
         move[0] = head.x + vec[0]
         move[1] = head.y + vec[1]
 
-
         if vec != [0, 0]:
 
             previous = coords
