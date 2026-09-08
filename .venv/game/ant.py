@@ -191,11 +191,6 @@ class Ant:
         move[0] = head.x + vec[0]
         move[1] = head.y + vec[1]
 
-        """if random.choice([True, False, False]):
-            x_entropy = random.randint(-2, 2)
-            y_entropy = random.randint(-2, 2)
-            move[0] += x_entropy
-            move[1] += y_entropy"""
 
         if vec != [0, 0]:
 
@@ -279,7 +274,7 @@ def follow_mouse(ant, distance_to_mouse, distance, reverse, enable_physics, enab
 
             temp = mv(new_v2, (-2) * temp)
 
-            """weird = av(vel_change, temp)"""
+
             weird = temp
 
             ant.vel_vector = av(ant.vel_vector, weird)

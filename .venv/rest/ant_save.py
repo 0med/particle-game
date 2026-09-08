@@ -9,7 +9,7 @@ from numpy.ma.core import nomask
 import numpy as np
 
 WIDTH, HEIGHT = 1000, 600
-FPS = 20
+FPS = 10
 RES = (WIDTH, HEIGHT)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -17,8 +17,8 @@ RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 GREEN = [0, 255, 0]
 GREY = (136, 136, 136)
-VEL = 2
-ant_size = 2
+VEL = 5
+ant_size = 5
 MAP = np.zeros((int(WIDTH / VEL), int(HEIGHT / VEL)), dtype=bool)
 ants = []
 
@@ -78,7 +78,7 @@ def getIndex(pos):
 
 
 def check_pos(index):
-    return MAP[index[0], index[1]] and False
+    return MAP[index[0], index[1]]
 
 
 def update_on_map(old, new):
@@ -92,13 +92,14 @@ class Ant:
         self.body = []
         head = self.createBody(ant_size, [random.randint(0, int((WIDTH/VEL)-1))*VEL,
                                           random.randint(0, int((HEIGHT/VEL)-1))*VEL])
+        print(int(head.x), int(head.y))
         self.body.append(head)
-        self.vel = random.choice([VEL*2, VEL*2, VEL*2, VEL*2, VEL*3, VEL, VEL*2])
+        self.vel = VEL
 
         # remove comment if you want tail
-        for i in range(3):
+        """for i in range(3):
             tail = self.createBody(ant_size, [0, 0])
-            self.body.append(tail)
+            self.body.append(tail)"""
 
     def createBody(self, size, coords):
         map_position = getIndex(coords)
@@ -120,11 +121,11 @@ class Ant:
         move = [coords[0] + move_vector[0] * self.vel,
                     coords[1] + move_vector[1] * self.vel]
 
-        if random.choice([True, False, False]):
+        """if random.choice([True, False, False]):
             x_entropy = random.randint(-2, 2)
             y_entropy = random.randint(-2, 2)
             move[0] += x_entropy
-            move[1] += y_entropy
+            move[1] += y_entropy"""
 
 
         if move_vector != [0, 0] and not (self.check_move(move)):
@@ -221,7 +222,7 @@ def main():
     WIN = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("ants?")
 
-    for i in range(1000):
+    for i in range(20):
         ant = Ant()
         ants.append(ant)
 
